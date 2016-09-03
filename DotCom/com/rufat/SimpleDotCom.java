@@ -1,31 +1,30 @@
+import java.util.ArrayList;
 
 public class SimpleDotCom {
 	
-	int[] locationCells;
-	int numOfHits = 0;
+	private ArrayList<String> locationCells;
 	
-	public void setLocationCells(int [] locations) {
-		locationCells = locations; 
+	public void setLocationCells(ArrayList<String> loc) {
+		locationCells = loc; 
 	}
 		
-	public String checkYourSelf(String userGuess) {
+	public String checkYourSelf(String userInput) {
 		
-		int guess = Integer.parseInt(userGuess);
 		String result = "miss";
-		for (int cell : locationCells) {
-			if (guess == cell) {
-				result = "hit";
-				numOfHits++;
-				break;
+		
+			int index = locationCells.indexOf(userInput);
+			
+			if(index >=0) {
+				locationCells.remove(index);
+				
+				if (locationCells.isEmpty()) {
+					result = "kill";
+				} else {
+					result = "hit";
+				}
+				
 			}
-		}
-		
-		if (numOfHits == locationCells.length) {
-			result = "kill";
-		}
-		
-		System.out.println(result);
-		return result;
+			return result;
 	}
 
 }
